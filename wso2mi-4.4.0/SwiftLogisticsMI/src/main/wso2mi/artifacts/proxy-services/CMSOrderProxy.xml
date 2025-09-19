@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="CMSOrderProxy" startOnLoad="true" statistics="disable" trace="disable" transports="http,https">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="CMS Order Proxy - Received request"/>
+                <property name="requestBody" expression="$body"/>
+            </log>
+            
+            <!-- Validate JSON request -->
+            <filter source="json-eval($.orderId)" regex=".+">
+                <then>
+                    <!-- Transform JSON to SOAP -->
+                    <sequence key="JSON_to_SOAP_Transform"/>
+                    
+                    <!-- Call CMS SOAP service -->
+                    <call>
+                        <endpoint key="CMSOrderEndpoint"/>
+                    </call>
+                    
+                    <!-- Transform SOAP response to JSON -->
+                    <sequence key="SOAP_to_JSON_Transform"/>
+                </then>
+                <else>
+                    <!-- Return error for invalid request -->
+                    <payloadFactory media-type="json">
+                        <format>
+                            {
+                                "success": false,
+                                "error": "Missing required field: orderId",
+                                "source": "WSO2 ESB"
+                            }
+                        </format>
+                    </payloadFactory>
+                    <property name="HTTP_SC" value="400" scope="axis2"/>
+                </else>
+            </filter>
+            
+            <respond/>
+        </inSequence>
+        
+        <outSequence>
+            <send/>
+        </outSequence>
+        
+        <faultSequence>
+            <log level="custom">
+                <property name="message" value="CMS Order Proxy - Fault occurred"/>
+                <property name="error" expression="get-property('ERROR_MESSAGE')"/>
+            </log>
+            
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                        "success": false,
+                        "error": "Internal server error",
+                        "message": "$1",
+                        "source": "WSO2 ESB"
+                    }
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('ERROR_MESSAGE')"/>
+                </args>
+            </payloadFactory>
+            
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </target>
+    
+    <description>Proxy service for CMS Order operations - JSON to SOAP transformation</description>
+</proxy>

@@ -1,0 +1,85 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Route Optimization API",
+    "version": "1.0.0",
+    "description": "API for calculating optimal delivery routes"
+  },
+  "paths": {
+    "/v1/routes/calculate": {
+      "post": {
+        "summary": "Calculate optimal route",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deliveryAddresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "address": {"type": "string"},
+                        "latitude": {"type": "number"},
+                        "longitude": {"type": "number"},
+                        "priority": {"type": "integer"}
+                      }
+                    }
+                  },
+                  "vehicles": {
+                    "type": "array", 
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "vehicleId": {"type": "string"},
+                        "capacity": {"type": "integer"},
+                        "currentLocation": {
+                          "type": "object",
+                          "properties": {
+                            "latitude": {"type": "number"},
+                            "longitude": {"type": "number"}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful route calculation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "optimizedRoutes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "vehicleId": {"type": "string"},
+                          "route": {
+                            "type": "array",
+                            "items": {"type": "string"}
+                          },
+                          "estimatedTime": {"type": "integer"},
+                          "totalDistance": {"type": "number"}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config date="1739927950729" transient="false">
+	<site updateable="true" url="platform:/base/" enabled="true" policy="USER-EXCLUDE">
+		<feature id="org.wso2.carbon.core.runtime" version="4.9.27" url="features/org.wso2.carbon.core.runtime_4.9.27/">
+		</feature>
+	</site>
+	<site updateable="true" url="file:." enabled="true" policy="USER-EXCLUDE">
+		<feature id="org.wso2.micro.integrator.ntask.core" version="4.4.0" url="features/org.wso2.micro.integrator.ntask.core_4.4.0/">
+		</feature>
+		<feature id="org.apache.axis2.transport.rabbitmq" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.rabbitmq_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.apache.synapse.transport.vfs" version="4.0.0.wso2v215" url="features/org.apache.synapse.transport.vfs_4.0.0.wso2v215/">
+		</feature>
+		<feature id="org.apache.synapse.transport.nhttp" version="4.0.0.wso2v215" url="features/org.apache.synapse.transport.nhttp_4.0.0.wso2v215/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.analytics.messageflow.data.publisher" version="4.4.0" url="features/org.wso2.micro.integrator.analytics.messageflow.data.publisher_4.4.0/">
+		</feature>
+		<feature id="org.apache.synapse.transport.vfs.smb2" version="4.0.0.wso2v215" url="features/org.apache.synapse.transport.vfs.smb2_4.0.0.wso2v215/">
+		</feature>
+		<feature id="org.wso2.carbon.mediator.datamapper.engine" version="4.7.244" url="features/org.wso2.carbon.mediator.datamapper.engine_4.7.244/">
+		</feature>
+		<feature id="org.wso2.transport.http.netty" version="6.3.53" url="features/org.wso2.transport.http.netty_6.3.53/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.inbound.endpoints.server" version="4.4.0" url="features/org.wso2.micro.integrator.inbound.endpoints.server_4.4.0/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.crypto" version="4.4.0" url="features/org.wso2.micro.integrator.crypto_4.4.0/">
+		</feature>
+		<feature id="org.apache.axis2.transport.tcp" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.tcp_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.apache.synapse.wso2" version="4.0.0.wso2v215" url="features/org.apache.synapse.wso2_4.0.0.wso2v215/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.security.server" version="4.4.0" url="features/org.wso2.micro.integrator.security.server_4.4.0/">
+		</feature>
+		<feature id="org.apache.axis2.transport.mqtt" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.mqtt_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.wso2.carbon.databridge.commons.thrift.server" version="5.2.62" url="features/org.wso2.carbon.databridge.commons.thrift.server_5.2.62/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.identity.xacml.mediator" version="4.4.0" url="features/org.wso2.micro.integrator.identity.xacml.mediator_4.4.0/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.observability" version="4.4.0" url="features/org.wso2.micro.integrator.observability_4.4.0/">
+		</feature>
+		<feature id="org.apache.axis2.transport.mail" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.mail_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.dataservices.server" version="4.4.0" url="features/org.wso2.micro.integrator.dataservices.server_4.4.0/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.server" version="4.4.0" url="features/org.wso2.micro.integrator.server_4.4.0/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.websocket" version="4.4.0" url="features/org.wso2.micro.integrator.websocket_4.4.0/">
+		</feature>
+		<feature id="org.wso2.carbon.transports.sap" version="4.7.36" url="features/org.wso2.carbon.transports.sap_4.7.36/">
+		</feature>
+		<feature id="org.wso2.ciphertool" version="1.2.5" url="features/org.wso2.ciphertool_1.2.5/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.logging.updater" version="4.4.0" url="features/org.wso2.micro.integrator.logging.updater_4.4.0/">
+		</feature>
+		<feature id="org.apache.axis2.transport.jms" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.jms_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.wso2.carbon.databridge.datapublisher" version="5.2.62" url="features/org.wso2.carbon.databridge.datapublisher_5.2.62/">
+		</feature>
+		<feature id="org.wso2.carbon.relay.server" version="4.7.244" url="features/org.wso2.carbon.relay.server_4.7.244/">
+		</feature>
+		<feature id="org.wso2.carbon.databridge.agent.server" version="5.2.62" url="features/org.wso2.carbon.databridge.agent.server_5.2.62/">
+		</feature>
+		<feature id="org.apache.axis2.transport.xmpp" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.xmpp_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.wso2.carbon.databridge.commons.binary.server" version="5.2.62" url="features/org.wso2.carbon.databridge.commons.binary.server_5.2.62/">
+		</feature>
+		<feature id="org.wso2.carbon.databridge.commons.server" version="5.2.62" url="features/org.wso2.carbon.databridge.commons.server_5.2.62/">
+		</feature>
+		<feature id="org.apache.synapse.transport.fix" version="4.0.0.wso2v215" url="features/org.apache.synapse.transport.fix_4.0.0.wso2v215/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.mediator.dataservice" version="4.4.0" url="features/org.wso2.micro.integrator.mediator.dataservice_4.4.0/">
+		</feature>
+		<feature id="org.apache.axis2.transport.udp" version="2.0.0.wso2v71" url="features/org.apache.axis2.transport.udp_2.0.0.wso2v71/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.mediators.server" version="4.4.0" url="features/org.wso2.micro.integrator.mediators.server_4.4.0/">
+		</feature>
+		<feature id="org.wso2.carbon.mediator.smooks.server" version="4.7.244" url="features/org.wso2.carbon.mediator.smooks.server_4.7.244/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.mediation.ntask" version="4.4.0" url="features/org.wso2.micro.integrator.mediation.ntask_4.4.0/">
+		</feature>
+		<feature id="org.wso2.micro.integrator.initializer" version="4.4.0" url="features/org.wso2.micro.integrator.initializer_4.4.0/">
+		</feature>
+		<feature id="org.wso2.carbon.mediator.datamapper.server" version="4.7.244" url="features/org.wso2.carbon.mediator.datamapper.server_4.7.244/">
+		</feature>
+	</site>
+</config>

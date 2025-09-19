@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="CMSContractProxy" startOnLoad="true" statistics="disable" trace="disable" transports="http,https">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="CMS Contract Proxy - Received request"/>
+                <property name="requestBody" expression="$body"/>
+            </log>
+            
+            <!-- Extract contract ID from request -->
+            <property name="contractId" expression="json-eval($.contractId)" scope="default" type="STRING"/>
+            
+            <!-- Validate contract ID -->
+            <filter source="get-property('contractId')" regex=".+">
+                <then>
+                    <!-- Set SOAP Action -->
+                    <header name="SOAPAction" value="http://swiftlogistics.com/cms/contracts/GetContract" scope="transport"/>
+                    
+                    <!-- Create SOAP request -->
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+                                          xmlns:cms="http://swiftlogistics.com/cms/contracts">
+                                <soap:Header/>
+                                <soap:Body>
+                                    <cms:GetContractRequest>
+                                        <cms:contractId>$1</cms:contractId>
+                                    </cms:GetContractRequest>
+                                </soap:Body>
+                            </soap:Envelope>
+                        </format>
+                        <args>
+                            <arg evaluator="xml" expression="get-property('contractId')"/>
+                        </args>
+                    </payloadFactory>
+                    
+                    <!-- Set Content-Type for SOAP -->
+                    <property name="messageType" value="text/xml" scope="axis2"/>
+                    
+                    <!-- Call CMS contract service -->
+                    <call>
+                        <endpoint key="CMSContractEndpoint"/>
+                    </call>
+                    
+                    <!-- Transform SOAP response to JSON -->
+                    <property name="contractClientId" expression="//cms:GetContractResponse/cms:contract/cms:clientId/text()" 
+                              xmlns:cms="http://swiftlogistics.com/cms/contracts" scope="default" type="STRING"/>
+                    <property name="contractTerms" expression="//cms:GetContractResponse/cms:contract/cms:terms/text()" 
+                              xmlns:cms="http://swiftlogistics.com/cms/contracts" scope="default" type="STRING"/>
+                    <property name="contractStatus" expression="//cms:GetContractResponse/cms:contract/cms:status/text()" 
+                              xmlns:cms="http://swiftlogistics.com/cms/contracts" scope="default" type="STRING"/>
+                    
+                    <payloadFactory media-type="json">
+                        <format>
+                            {
+                                "success": true,
+                                "contract": {
+                                    "id": "$1",
+                                    "clientId": "$2",
+                                    "terms": "$3",
+                                    "status": "$4"
+                                },
+                                "source": "CMS"
+                            }
+                        </format>
+                        <args>
+                            <arg evaluator="xml" expression="get-property('contractId')"/>
+                            <arg evaluator="xml" expression="get-property('contractClientId')"/>
+                            <arg evaluator="xml" expression="get-property('contractTerms')"/>
+                            <arg evaluator="xml" expression="get-property('contractStatus')"/>
+                        </args>
+                    </payloadFactory>
+                </then>
+                <else>
+                    <payloadFactory media-type="json">
+                        <format>
+                            {
+                                "success": false,
+                                "error": "Missing required field: contractId",
+                                "source": "WSO2 ESB"
+                            }
+                        </format>
+                    </payloadFactory>
+                    <property name="HTTP_SC" value="400" scope="axis2"/>
+                </else>
+            </filter>
+            
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <respond/>
+        </inSequence>
+        
+        <outSequence>
+            <send/>
+        </outSequence>
+        
+        <faultSequence>
+            <log level="custom">
+                <property name="message" value="CMS Contract Proxy - Fault occurred"/>
+                <property name="error" expression="get-property('ERROR_MESSAGE')"/>
+            </log>
+            
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                        "success": false,
+                        "error": "Internal server error",
+                        "message": "$1",
+                        "source": "WSO2 ESB"
+                    }
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('ERROR_MESSAGE')"/>
+                </args>
+            </payloadFactory>
+            
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </target>
+    
+    <description>Proxy service for CMS Contract operations - JSON to SOAP transformation</description>
+</proxy>

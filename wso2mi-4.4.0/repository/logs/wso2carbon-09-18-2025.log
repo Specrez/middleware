@@ -1,0 +1,33 @@
+TID: [2025-09-18 12:35:46,996]  INFO {org.wso2.config.mapper.ConfigParser} - Overriding files in configuration directory C:\WSO2\WSO2MI~1.0\bin\.. {org.wso2.config.mapper.ConfigParser}
+TID: [2025-09-18 12:35:47,151]  INFO {org.wso2.config.mapper.ConfigParser} - Applying configurations with deployment configurations {org.wso2.config.mapper.ConfigParser}
+[2025-09-18 12:35:59,925]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTP Listener started on 0:0:0:0:0:0:0:0:8290
+[2025-09-18 12:35:59,938]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTPS Listener started on 0:0:0:0:0:0:0:0:8253
+[2025-09-18 12:36:00,045]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTP_INBOUND_ENDPOINT Listener started on 0:0:0:0:0:0:0:0:9201
+[2025-09-18 12:36:00,064]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTPS_INBOUND_ENDPOINT Listener started on 0:0:0:0:0:0:0:0:9164
+[2025-09-18 12:36:00,067]  INFO {org.wso2.micro.integrator.initializer.StartupFinalizer} - WSO2 Micro Integrator started in 13.07 seconds
+[2025-09-18 15:06:12,788]  INFO {org.wso2.micro.integrator.core.internal.CoreServerInitializer} - Gracefully shutting down WSO2 Micro Integrator...
+[2025-09-18 15:06:12,790]  INFO {org.wso2.micro.core.ServerManagement} - Starting to switch to maintenance mode...
+[2025-09-18 15:06:12,791]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pausing  IO Reactor bind for port 8253
+[2025-09-18 15:06:12,791]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Shutting down IO Reactor bind for port 8253
+[2025-09-18 15:06:12,791]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pausing  IO Reactor bind for port 8290
+[2025-09-18 15:06:12,791]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Shutting down IO Reactor bind for port 8290
+[2025-09-18 15:06:12,804]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - HTTPS-Listener I/O dispatcher Listener shutdown.
+[2025-09-18 15:06:12,804]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - HTTP-Listener I/O dispatcher Listener shutdown.
+[2025-09-18 15:06:12,804]  INFO {org.wso2.micro.core.ServerManagement} - Stopped all transport listeners
+[2025-09-18 15:06:12,806]  INFO {org.wso2.micro.core.ServerManagement} - Waiting for request service completion...
+[2025-09-18 15:06:12,808]  INFO {org.wso2.micro.core.ServerManagement} - All requests have been served.
+[2025-09-18 15:06:12,809]  INFO {org.wso2.micro.core.ServerManagement} - Waiting for deployment completion...
+[2025-09-18 15:06:12,809]  INFO {org.wso2.micro.core.ServerManagement} - All deployment tasks have been completed.
+[2025-09-18 15:06:12,809]  INFO {org.wso2.micro.core.ServerManagement} - Waiting for server task completion...
+[2025-09-18 15:06:12,810]  INFO {org.wso2.micro.core.ServerManagement} - All server tasks have been completed.
+[2025-09-18 15:06:12,910]  INFO {org.wso2.micro.integrator.ntask.core.impl.QuartzCachedThreadPool} - Graceful scheduler shutdown initiated. Waiting for tasks to finish...
+[2025-09-18 15:06:12,912]  INFO {org.wso2.micro.integrator.ntask.core.impl.QuartzCachedThreadPool} - Scheduler terminated cleanly.
+[2025-09-18 15:06:12,912]  INFO {org.wso2.micro.integrator.ntask.core.internal.TasksDSComponent} - Shutting down global executor.
+[2025-09-18 15:06:12,912]  INFO {org.wso2.micro.integrator.ntask.core.internal.TasksDSComponent} - Global executor shut down cleanly.
+[2025-09-18 15:06:12,913]  INFO {org.apache.synapse.deployers.interceptor.DeploymentInterceptor} - Removing Axis2 Service: __SynapseService
+[2025-09-18 15:06:12,917]  INFO {org.apache.synapse.task.SynapseTaskManager} - Shutting down the task manager
+[2025-09-18 15:30:56,041]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTP Listener started on 0:0:0:0:0:0:0:0:8290
+[2025-09-18 15:30:56,055]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTPS Listener started on 0:0:0:0:0:0:0:0:8253
+[2025-09-18 15:30:56,147]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTP_INBOUND_ENDPOINT Listener started on 0:0:0:0:0:0:0:0:9201
+[2025-09-18 15:30:56,172]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTPS_INBOUND_ENDPOINT Listener started on 0:0:0:0:0:0:0:0:9164
+[2025-09-18 15:30:56,176]  INFO {org.wso2.micro.integrator.initializer.StartupFinalizer} - WSO2 Micro Integrator started in 12.76 seconds

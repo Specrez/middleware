@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="JSON_to_SOAP_Transform">
+    <log level="custom">
+        <property name="message" value="Starting JSON to SOAP transformation"/>
+    </log>
+    
+    <!-- Store original JSON request -->
+    <property name="originalRequest" expression="$body" scope="default" type="OM"/>
+    
+    <!-- Extract values from JSON -->
+    <property name="clientId" expression="json-eval($.clientId)" scope="default" type="STRING"/>
+    <property name="orderId" expression="json-eval($.orderId)" scope="default" type="STRING"/>
+    <property name="contractId" expression="json-eval($.contractId)" scope="default" type="STRING"/>
+    <property name="deliveryAddress" expression="json-eval($.deliveryAddress)" scope="default" type="STRING"/>
+    <property name="items" expression="json-eval($.items)" scope="default" type="STRING"/>
+    
+    <!-- Set SOAP Action header -->
+    <header name="SOAPAction" value="http://swiftlogistics.com/cms/orders/SubmitOrder" scope="transport"/>
+    
+    <!-- Create SOAP envelope -->
+    <payloadFactory media-type="xml">
+        <format>
+            <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+                          xmlns:cms="http://swiftlogistics.com/cms/orders">
+                <soap:Header/>
+                <soap:Body>
+                    <cms:SubmitOrderRequest>
+                        <cms:clientId>$1</cms:clientId>
+                        <cms:orderId>$2</cms:orderId>
+                        <cms:deliveryAddress>$3</cms:deliveryAddress>
+                        <cms:items>$4</cms:items>
+                    </cms:SubmitOrderRequest>
+                </soap:Body>
+            </soap:Envelope>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="get-property('clientId')"/>
+            <arg evaluator="xml" expression="get-property('orderId')"/>
+            <arg evaluator="xml" expression="get-property('deliveryAddress')"/>
+            <arg evaluator="xml" expression="get-property('items')"/>
+        </args>
+    </payloadFactory>
+    
+    <!-- Set Content-Type for SOAP -->
+    <property name="messageType" value="text/xml" scope="axis2"/>
+    <property name="ContentType" value="text/xml; charset=UTF-8" scope="transport"/>
+    
+    <log level="custom">
+        <property name="message" value="JSON to SOAP transformation completed"/>
+    </log>
+</sequence>

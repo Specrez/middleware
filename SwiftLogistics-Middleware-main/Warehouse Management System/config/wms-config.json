@@ -1,0 +1,28 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "warehouse_management",
+    "username": "wms_user",
+    "password": "wms_password"
+  },
+  "warehouse": {
+    "defaultLocation": {
+      "name": "Main Warehouse",
+      "address": "123 Logistics Ave, Business District",
+      "capacity": 10000,
+      "zones": ["A", "B", "C", "D"]
+    }
+  },
+  "inventory": {
+    "trackingEnabled": true,
+    "realTimeUpdates": true,
+    "lowStockThreshold": 10,
+    "reorderLevel": 50
+  },
+  "integration": {
+    "cmsEnabled": true,
+    "rosEnabled": true,
+    "updateFrequency": "realtime"
+  }
+}

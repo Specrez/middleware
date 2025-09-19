@@ -1,0 +1,54 @@
+[2025-09-19 09:44:33,013]  WARN {org.apache.synapse.transport.passthru.PassThroughHttpListener} - System may be unstable: HTTP ListeningIOReactor encountered a checked exception : Address already in use: bind java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+
+[2025-09-19 09:44:33,026]  WARN {org.apache.synapse.transport.passthru.PassThroughHttpSSLListener} - System may be unstable: HTTPS ListeningIOReactor encountered a checked exception : Address already in use: bind java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+
+[2025-09-19 09:44:33,154] FATAL {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Exception encountered in the HTTP Listener. No more connections will be accepted by this transport org.apache.http.nio.reactor.IOReactorException: Failure binding socket to address 0.0.0.0/0.0.0.0:9201
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:248)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	... 4 more
+
+[2025-09-19 09:44:33,185] FATAL {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Exception encountered in the HTTPS Listener. No more connections will be accepted by this transport org.apache.http.nio.reactor.IOReactorException: Failure binding socket to address 0.0.0.0/0.0.0.0:9164
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:248)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	... 4 more
+

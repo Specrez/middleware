@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://swiftlogistics.com/cms/orders"
+             targetNamespace="http://swiftlogistics.com/cms/orders">
+    
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                targetNamespace="http://swiftlogistics.com/cms/orders">
+            <element name="ProcessOrderRequest">
+                <complexType>
+                    <sequence>
+                        <element name="orderId" type="string"/>
+                        <element name="clientId" type="string"/>
+                        <element name="items" type="tns:ItemArray" minOccurs="0"/>
+                        <element name="deliveryAddress" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ProcessOrderResponse">
+                <complexType>
+                    <sequence>
+                        <element name="orderResult" type="tns:OrderResult"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <complexType name="OrderResult">
+                <sequence>
+                    <element name="id" type="string"/>
+                    <element name="status" type="string"/>
+                    <element name="receivedAt" type="string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ItemArray">
+                <sequence>
+                    <element name="item" type="string" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+            </complexType>
+        </schema>
+    </types>
+    
+    <message name="ProcessOrderRequest">
+        <part name="parameters" element="tns:ProcessOrderRequest"/>
+    </message>
+    <message name="ProcessOrderResponse">
+        <part name="parameters" element="tns:ProcessOrderResponse"/>
+    </message>
+    
+    <portType name="OrderServicePortType">
+        <operation name="ProcessOrder">
+            <input message="tns:ProcessOrderRequest"/>
+            <output message="tns:ProcessOrderResponse"/>
+        </operation>
+    </portType>
+    
+    <binding name="OrderServiceBinding" type="tns:OrderServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="ProcessOrder">
+            <soap:operation soapAction="ProcessOrder"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+    
+    <service name="OrderIntakeService">
+        <port name="OrderServicePort" binding="tns:OrderServiceBinding">
+            <soap:address location="http://localhost:8080/cms/orders"/>
+        </port>
+    </service>
+</definitions>

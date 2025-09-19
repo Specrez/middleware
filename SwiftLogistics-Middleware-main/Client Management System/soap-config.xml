@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Header>
+        <!-- SOAP Configuration for Client Management System -->
+    </soap:Header>
+    <soap:Body>
+        <configuration>
+            <endpoints>
+                <endpoint name="ClientContractService">
+                    <url>http://localhost:8080/cms/contracts</url>
+                    <namespace>http://swiftlogistics.com/cms/contracts</namespace>
+                </endpoint>
+                <endpoint name="BillingService">
+                    <url>http://localhost:8080/cms/billing</url>
+                    <namespace>http://swiftlogistics.com/cms/billing</namespace>
+                </endpoint>
+                <endpoint name="OrderIntakeService">
+                    <url>http://localhost:8080/cms/orders</url>
+                    <namespace>http://swiftlogistics.com/cms/orders</namespace>
+                </endpoint>
+            </endpoints>
+            <authentication>
+                <type>basic</type>
+                <username>cms_user</username>
+                <password>cms_password</password>
+            </authentication>
+        </configuration>
+    </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,89 @@
+[2025-09-19 04:22:45,752]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTP Listener started on 0:0:0:0:0:0:0:0:8290
+[2025-09-19 04:22:45,767]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTPS Listener started on 0:0:0:0:0:0:0:0:8253
+[2025-09-19 04:22:45,860]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTP_INBOUND_ENDPOINT Listener started on 0:0:0:0:0:0:0:0:9201
+[2025-09-19 04:22:45,882]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTPS_INBOUND_ENDPOINT Listener started on 0:0:0:0:0:0:0:0:9164
+[2025-09-19 04:22:45,886]  INFO {org.wso2.micro.integrator.initializer.StartupFinalizer} - WSO2 Micro Integrator started in 13.73 seconds
+[2025-09-19 09:44:33,011]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTP Listener started on 0.0.0.0:8290
+[2025-09-19 09:44:33,013]  WARN {org.apache.synapse.transport.passthru.PassThroughHttpListener} - System may be unstable: HTTP ListeningIOReactor encountered a checked exception : Address already in use: bind java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+
+[2025-09-19 09:44:33,026]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTPS Listener started on 0.0.0.0:8253
+[2025-09-19 09:44:33,026]  WARN {org.apache.synapse.transport.passthru.PassThroughHttpSSLListener} - System may be unstable: HTTPS ListeningIOReactor encountered a checked exception : Address already in use: bind java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+
+[2025-09-19 09:44:33,154]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTP_INBOUND_ENDPOINT Listener started on 0.0.0.0:9201
+[2025-09-19 09:44:33,154] FATAL {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Exception encountered in the HTTP Listener. No more connections will be accepted by this transport org.apache.http.nio.reactor.IOReactorException: Failure binding socket to address 0.0.0.0/0.0.0.0:9201
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:248)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	... 4 more
+
+[2025-09-19 09:44:33,154]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - HTTP Listener shutdown.
+[2025-09-19 09:44:33,156]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Shutting down shared IO Reactor
+[2025-09-19 09:44:33,184]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTPS_INBOUND_ENDPOINT Listener started on 0.0.0.0:9164
+[2025-09-19 09:44:33,185] FATAL {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Exception encountered in the HTTPS Listener. No more connections will be accepted by this transport org.apache.http.nio.reactor.IOReactorException: Failure binding socket to address 0.0.0.0/0.0.0.0:9164
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:248)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processEvents(DefaultListeningIOReactor.java:144)
+	at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor.execute(AbstractMultiworkerIOReactor.java:351)
+	at org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager$1.run(PassThroughListeningIOReactorManager.java:561)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:555)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:344)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:301)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:89)
+	at org.apache.http.impl.nio.reactor.DefaultListeningIOReactor.processSessionRequests(DefaultListeningIOReactor.java:243)
+	... 4 more
+
+[2025-09-19 09:44:33,185]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - HTTPS Listener shutdown.
+[2025-09-19 09:44:33,185]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Shutting down shared IO Reactor
+[2025-09-19 09:44:33,188]  INFO {org.wso2.micro.integrator.initializer.StartupFinalizer} - WSO2 Micro Integrator started in 13.61 seconds
+[2025-09-19 09:46:19,618]  INFO {org.wso2.micro.integrator.core.internal.CoreServerInitializer} - Gracefully shutting down WSO2 Micro Integrator...
+[2025-09-19 09:46:19,619]  INFO {org.wso2.micro.core.ServerManagement} - Starting to switch to maintenance mode...
+[2025-09-19 09:46:19,620]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pausing  IO Reactor bind for port 8290
+[2025-09-19 09:46:19,620]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pausing  IO Reactor bind for port 8253
+[2025-09-19 09:46:19,620]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Shutting down IO Reactor bind for port 8290
+[2025-09-19 09:46:19,620]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Shutting down IO Reactor bind for port 8253
+[2025-09-19 09:46:19,622]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - HTTPS-Listener I/O dispatcher Listener shutdown.
+[2025-09-19 09:46:19,622]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - HTTP-Listener I/O dispatcher Listener shutdown.
+[2025-09-19 09:46:19,622]  INFO {org.wso2.micro.core.ServerManagement} - Stopped all transport listeners
+[2025-09-19 09:46:19,625]  INFO {org.wso2.micro.core.ServerManagement} - Waiting for request service completion...
+[2025-09-19 09:46:19,626]  INFO {org.wso2.micro.core.ServerManagement} - All requests have been served.
+[2025-09-19 09:46:19,626]  INFO {org.wso2.micro.core.ServerManagement} - Waiting for deployment completion...
+[2025-09-19 09:46:19,626]  INFO {org.wso2.micro.core.ServerManagement} - All deployment tasks have been completed.
+[2025-09-19 09:46:19,626]  INFO {org.wso2.micro.core.ServerManagement} - Waiting for server task completion...
+[2025-09-19 09:46:19,627]  INFO {org.wso2.micro.core.ServerManagement} - All server tasks have been completed.
+[2025-09-19 09:46:19,634]  INFO {org.wso2.micro.integrator.ntask.core.impl.QuartzCachedThreadPool} - Graceful scheduler shutdown initiated. Waiting for tasks to finish...
+[2025-09-19 09:46:19,634]  INFO {org.wso2.micro.integrator.ntask.core.impl.QuartzCachedThreadPool} - Scheduler terminated cleanly.
+[2025-09-19 09:46:19,635]  INFO {org.wso2.micro.integrator.ntask.core.internal.TasksDSComponent} - Shutting down global executor.
+[2025-09-19 09:46:19,635]  INFO {org.wso2.micro.integrator.ntask.core.internal.TasksDSComponent} - Global executor shut down cleanly.
+[2025-09-19 09:46:19,635]  INFO {org.apache.synapse.deployers.interceptor.DeploymentInterceptor} - Removing Axis2 Service: __SynapseService
+[2025-09-19 09:46:19,638]  INFO {org.apache.synapse.task.SynapseTaskManager} - Shutting down the task manager

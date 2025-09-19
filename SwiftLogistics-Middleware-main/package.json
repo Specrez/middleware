@@ -1,0 +1,47 @@
+{
+  "name": "swiftlogistics-middleware",
+  "version": "1.0.0",
+  "description": "SwiftLogistics Middleware - Comprehensive middleware solution integrating CMS, ROS, and WMS systems",
+  "main": "middleware-integration.js",
+  "scripts": {
+    "start": "node middleware-integration.js",
+    "dev": "nodemon middleware-integration.js",
+    "start:cms": "cd \"Client Management System\" && npm start",
+    "start:ros": "cd \"Route Optimisation System\" && npm start",
+    "start:wms": "cd \"Warehouse Management System\" && npm start",
+    "test": "npm run test:ros && npm run test:cms && npm run test:wms",
+    "test:ros": "cd \"Route Optimisation System\" && npm test",
+    "test:cms": "cd \"Client Management System\" && npm test",
+    "test:wms": "cd \"Warehouse Management System\" && npm test",
+    "demo": "npm run demo:ros",
+    "demo:ros": "cd \"Route Optimisation System\" && npm run demo",
+    "demo:wms": "cd \"Warehouse Management System\" && npm run demo",
+    "install:all": "npm install && cd \"Client Management System\" && npm install && cd \"../Route Optimisation System\" && npm install && cd \"../Warehouse Management System\" && npm install",
+    "setup": "npm run install:all"
+  },
+  "keywords": [
+    "logistics",
+    "middleware",
+    "cms",
+    "ros", 
+    "wms",
+    "route-optimization",
+    "integration"
+  ],
+  "author": "SwiftLogistics",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "body-parser": "^1.20.0",
+    "http": "^0.0.1-security",
+    "node-fetch": "^2.6.12"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

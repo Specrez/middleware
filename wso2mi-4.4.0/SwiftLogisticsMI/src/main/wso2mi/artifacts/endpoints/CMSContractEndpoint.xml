@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="CMSContractEndpoint">
+    <address uri="http://localhost:8081/cms/contracts">
+        <suspendOnFailure>
+            <initialDuration>15000</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+            <maximumDuration>0</maximumDuration>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>5</retriesBeforeSuspension>
+        </markForSuspension>
+    </address>
+</endpoint>

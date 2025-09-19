@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="SOAP_to_JSON_Transform">
+    <log level="custom">
+        <property name="message" value="Starting SOAP to JSON transformation"/>
+    </log>
+    
+    <!-- Extract values from SOAP response -->
+    <property name="responseStatus" expression="//cms:SubmitOrderResponse/cms:status/text()" 
+              xmlns:cms="http://swiftlogistics.com/cms/orders" scope="default" type="STRING"/>
+    <property name="responseOrderId" expression="//cms:SubmitOrderResponse/cms:orderId/text()" 
+              xmlns:cms="http://swiftlogistics.com/cms/orders" scope="default" type="STRING"/>
+    <property name="responseMessage" expression="//cms:SubmitOrderResponse/cms:message/text()" 
+              xmlns:cms="http://swiftlogistics.com/cms/orders" scope="default" type="STRING"/>
+    <property name="responseTimestamp" expression="//cms:SubmitOrderResponse/cms:timestamp/text()" 
+              xmlns:cms="http://swiftlogistics.com/cms/orders" scope="default" type="STRING"/>
+    
+    <!-- Create JSON response -->
+    <payloadFactory media-type="json">
+        <format>
+            {
+                "success": true,
+                "orderId": "$1",
+                "status": "$2",
+                "message": "$3",
+                "timestamp": "$4",
+                "source": "CMS"
+            }
+        </format>
+        <args>
+            <arg evaluator="xml" expression="get-property('responseOrderId')"/>
+            <arg evaluator="xml" expression="get-property('responseStatus')"/>
+            <arg evaluator="xml" expression="get-property('responseMessage')"/>
+            <arg evaluator="xml" expression="get-property('responseTimestamp')"/>
+        </args>
+    </payloadFactory>
+    
+    <!-- Set Content-Type for JSON -->
+    <property name="messageType" value="application/json" scope="axis2"/>
+    <property name="ContentType" value="application/json" scope="transport"/>
+    
+    <log level="custom">
+        <property name="message" value="SOAP to JSON transformation completed"/>
+    </log>
+</sequence>

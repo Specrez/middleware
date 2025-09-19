@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse" name="SwiftLogisticsAPI" context="/api/v1">
+    <resource methods="POST" uri-template="/orders/submit">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Order Submit"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8280/services/CMSOrderProxy"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="GET" uri-template="/contracts/{contractId}">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Get Contract"/>
+            </log>
+            <property name="contractId" expression="get-property('uri.var.contractId')" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                        "contractId": "$1"
+                    }
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('contractId')"/>
+                </args>
+            </payloadFactory>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8280/services/CMSContractProxy"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="POST" uri-template="/packages/receive">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Package Receive"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8280/services/WMSPackageProxy/receive"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="POST" uri-template="/packages/store">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Package Store"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8280/services/WMSPackageProxy/store"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="POST" uri-template="/packages/pick">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Package Pick"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8280/services/WMSPackageProxy/pick"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="POST" uri-template="/packages/load">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Package Load"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="post" uri-template="http://localhost:8280/services/WMSPackageProxy/load"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="GET" uri-template="/packages/status/{packageId}">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Package Status"/>
+            </log>
+            <property name="packageId" expression="get-property('uri.var.packageId')" scope="default" type="STRING"/>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="http://localhost:8280/services/WMSPackageProxy/status/{uri.var.packageId}">
+                        <substitutionRules>
+                            <substitutionRule pattern="\{uri\.var\.packageId\}" replacement="{get-property('packageId')}"/>
+                        </substitutionRules>
+                    </http>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+    
+    <resource methods="GET" uri-template="/packages/list">
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="SwiftLogistics API - Package List"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="http://localhost:8280/services/WMSPackageProxy/list"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+</api>

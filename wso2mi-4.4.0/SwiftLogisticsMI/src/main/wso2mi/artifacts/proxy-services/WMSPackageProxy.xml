@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="WMSPackageProxy" startOnLoad="true" statistics="disable" trace="disable" transports="http,https">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property name="message" value="WMS Package Proxy - Received request"/>
+                <property name="requestPath" expression="get-property('axis2', 'REST_URL_POSTFIX')"/>
+            </log>
+            
+            <!-- Extract operation from URL path -->
+            <property name="operation" expression="get-property('axis2', 'REST_URL_POSTFIX')" scope="default" type="STRING"/>
+            
+            <!-- Route based on operation -->
+            <switch source="get-property('operation')">
+                <!-- Package Receive Operation -->
+                <case regex="/receive">
+                    <log level="custom">
+                        <property name="message" value="Processing package receive operation"/>
+                    </log>
+                    <call>
+                        <endpoint>
+                            <http method="post" uri-template="http://localhost:3004/api/packages/receive"/>
+                        </endpoint>
+                    </call>
+                </case>
+                
+                <!-- Package Store Operation -->
+                <case regex="/store">
+                    <log level="custom">
+                        <property name="message" value="Processing package store operation"/>
+                    </log>
+                    <call>
+                        <endpoint>
+                            <http method="post" uri-template="http://localhost:3004/api/packages/store"/>
+                        </endpoint>
+                    </call>
+                </case>
+                
+                <!-- Package Pick Operation -->
+                <case regex="/pick">
+                    <log level="custom">
+                        <property name="message" value="Processing package pick operation"/>
+                    </log>
+                    <call>
+                        <endpoint>
+                            <http method="post" uri-template="http://localhost:3004/api/packages/pick"/>
+                        </endpoint>
+                    </call>
+                </case>
+                
+                <!-- Package Load Operation -->
+                <case regex="/load">
+                    <log level="custom">
+                        <property name="message" value="Processing package load operation"/>
+                    </log>
+                    <call>
+                        <endpoint>
+                            <http method="post" uri-template="http://localhost:3004/api/packages/load"/>
+                        </endpoint>
+                    </call>
+                </case>
+                
+                <!-- Package Status Operation -->
+                <case regex="/status/.*">
+                    <log level="custom">
+                        <property name="message" value="Processing package status operation"/>
+                    </log>
+                    <!-- Extract package ID from URL -->
+                    <property name="packageId" expression="substring-after(get-property('operation'), '/status/')" scope="default" type="STRING"/>
+                    <call>
+                        <endpoint>
+                            <http method="get" uri-template="http://localhost:3004/api/packages/status/{uri.var.packageId}">
+                                <substitutionRules>
+                                    <substitutionRule pattern="\{uri\.var\.packageId\}" replacement="{get-property('packageId')}"/>
+                                </substitutionRules>
+                            </http>
+                        </endpoint>
+                    </call>
+                </case>
+                
+                <!-- Package List Operation -->
+                <case regex="/list">
+                    <log level="custom">
+                        <property name="message" value="Processing package list operation"/>
+                    </log>
+                    <call>
+                        <endpoint>
+                            <http method="get" uri-template="http://localhost:3004/api/packages/list"/>
+                        </endpoint>
+                    </call>
+                </case>
+                
+                <!-- Default case for unknown operations -->
+                <default>
+                    <log level="custom">
+                        <property name="message" value="Unknown WMS operation"/>
+                        <property name="operation" expression="get-property('operation')"/>
+                    </log>
+                    <payloadFactory media-type="json">
+                        <format>
+                            {
+                                "success": false,
+                                "error": "Unknown operation",
+                                "operation": "$1",
+                                "source": "WSO2 ESB"
+                            }
+                        </format>
+                        <args>
+                            <arg evaluator="xml" expression="get-property('operation')"/>
+                        </args>
+                    </payloadFactory>
+                    <property name="HTTP_SC" value="404" scope="axis2"/>
+                </default>
+            </switch>
+            
+            <!-- Ensure JSON response -->
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <respond/>
+        </inSequence>
+        
+        <outSequence>
+            <send/>
+        </outSequence>
+        
+        <faultSequence>
+            <log level="custom">
+                <property name="message" value="WMS Package Proxy - Fault occurred"/>
+                <property name="error" expression="get-property('ERROR_MESSAGE')"/>
+            </log>
+            
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                        "success": false,
+                        "error": "Internal server error",
+                        "message": "$1",
+                        "source": "WSO2 ESB"
+                    }
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('ERROR_MESSAGE')"/>
+                </args>
+            </payloadFactory>
+            
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </target>
+    
+    <description>Proxy service for WMS Package operations via TCP-HTTP adapter</description>
+</proxy>
